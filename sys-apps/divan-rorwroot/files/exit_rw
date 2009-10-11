@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+umount /mnt/rwroot/dev || true
+umount /mnt/rwroot/proc || true
+umount /mnt/rwroot || true 
+mount -o remount,ro /
+echo "Back in RO"
+touch /rwtest >/dev/null 2>/dev/null && echo "!!!!!Not RO!!!!!"

@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+mount -o remount,rw /
+mount -o bind / /mnt/rwroot
+mount -t proc none /mnt/rwroot/proc
+mount -o bind /dev /mnt/rwroot/dev
+echo "Entering RW chroot"
+env PS1="(rw chroot)${PS1}" chroot /mnt/rwroot $@ 
