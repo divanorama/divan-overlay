@@ -1,0 +1,16 @@
+--- Makefile.old	2009-01-17 14:46:16.000000000 +0500
++++ Makefile	2009-01-17 14:46:24.000000000 +0500
+@@ -18,9 +18,10 @@
+ 
+ BUILD_DATE := $(shell date)
+ BUILD_HOST := $(shell hostname)
+-BUILD_BRANCH := $(shell git branch | grep ^\* | cut -d' ' -f2)
+-BUILD_HEAD := $(shell git show --pretty=oneline | head -n1 | cut -d' ' -f1 | cut -b1-16)
+-BUILD_VERSION := ${BUILD_BRANCH}_${BUILD_HEAD}
++#BUILD_BRANCH := $(shell git branch | grep ^\* | cut -d' ' -f2)
++#BUILD_HEAD := $(shell git show --pretty=oneline | head -n1 | cut -d' ' -f1 | cut -b1-16)
++#BUILD_VERSION := ${BUILD_BRANCH}_${BUILD_HEAD}
++BUILD_VERSION := master_ddbd173a92ce5fcc282e0951e90ff981ebb9969d
+ 
+ LDS	= src/cpu/$(CPU)/qi.lds
+ INCLUDE	= include

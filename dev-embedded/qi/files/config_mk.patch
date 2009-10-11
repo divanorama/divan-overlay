@@ -1,0 +1,18 @@
+--- config.mk.old
++++ config.mk
+@@ -2,12 +2,12 @@
+ # Include the make variables (CC, etc...)
+ #
+ 
+-CROSS_PATH=/usr/local/openmoko/arm
+-CROSS_COMPILE=${CROSS_PATH}/bin/arm-angstrom-linux-gnueabi-
++CROSS_PATH=/usr
++CROSS_COMPILE=${CROSS_PATH}/bin/armv4tl-softfloat-linux-gnueabi-
+ 
+ ####
+ COMPILER_LIB_PATH_PRE=${CROSS_PATH}/lib/gcc/arm-angstrom-linux-gnueabi
+-COMPILER_LIB_PATH=${COMPILER_LIB_PATH_PRE}/`ls ${COMPILER_LIB_PATH_PRE}`
++COMPILER_LIB_PATH=${COMPILER_LIB_PATH_PRE}/`${CROSS_COMPILE}g++ -v 2>&1 | grep "version " | cut -d " " -f 3`
+ 
+ AS	= $(CROSS_COMPILE)as
+ LD	= $(CROSS_COMPILE)ld
