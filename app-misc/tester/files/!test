@@ -1,0 +1,2 @@
+#!/bin/sh -e
+wine /usr/bin/!test.exe $*
