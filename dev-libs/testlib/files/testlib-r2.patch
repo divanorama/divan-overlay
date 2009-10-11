@@ -1,0 +1,45 @@
+Index: testlib.h
+===================================================================
+--- testlib.h	(revision 2)
++++ testlib.h	(working copy)
+@@ -30,7 +30,7 @@
+  *   If result file is specified it will contain results.
+  */
+ 
+-char* latestFeatures[] = {
++const char* latestFeatures[] = {
+                           "Now no footer added to each report by default (use directive FOOTER to switch on)",
+                           "Now every checker has a name, use setName(const char* format, ...) to set it",
+                           "Now it is compatible with TTS (by Kittens Computing)",
+@@ -40,12 +40,12 @@
+                           "Added compatibility with EJUDGE (compile with EJUDGE directive)"
+                          };
+ 
++#include <cstdlib>
+ #include <cstdio>
+ #include <cctype>
+ #include <string>
+ #include <string.h>
+ #include <stdarg.h>
+-#include <process.h>
+ 
+ #if ( _WIN32 || __WIN32__ )
+ #include <windows.h>
+@@ -634,7 +634,7 @@
+     ouf.quit(result, msg.c_str());
+ }
+ 
+-void quit(TResult result, char * msg)
++void quit(TResult result, const char * msg)
+ {
+     ouf.quit(result, msg);
+ }
+@@ -666,7 +666,7 @@
+ 
+         std::printf("\n");
+         std::printf("Latest features: \n");
+-        for (int i = 0; i < sizeof(latestFeatures) / sizeof(char*); i++)
++        for (size_t i = 0; i < sizeof(latestFeatures) / sizeof(char*); i++)
+         {
+             std::printf("*) %s\n", latestFeatures[i]);
+         }
