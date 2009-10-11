@@ -1,0 +1,11 @@
+--- SConstruct.orig	2008-11-04 23:40:58.000000000 +0500
++++ SConstruct	2008-11-04 23:38:46.000000000 +0500
+@@ -6,7 +6,7 @@
+ envh = env.Copy()
+ envh.ParseConfig('pkg-config libusb --cflags --libs')
+ envh.ParseConfig('pkg-config sdl --cflags --libs')
+-envh.Append(RPATH = '.')
++#envh.Append(RPATH = '.')
+ envh.Append(LIBS = 'ccm')
+ envh.Program('mcalib', ['huey.cpp', 'main.cpp'])
+ 
