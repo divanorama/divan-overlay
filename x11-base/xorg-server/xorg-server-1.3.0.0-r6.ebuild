@@ -103,6 +103,7 @@ IUSE_SERVERS="dmx kdrive xorg"
 IUSE="${IUSE_VIDEO_CARDS}
 	${IUSE_INPUT_DEVICES}
 	${IUSE_SERVERS}
+	+xineramainfo
 	3dfx
 	dri ipv6 minimal nptl sdl xprint"
 RDEPEND=">=x11-libs/libXfont-1.2.5
@@ -264,6 +265,13 @@ LICENSE="${LICENSE} MIT"
 
 PATCHES="
 	${FILESDIR}/${PV}-fix-xkb-openoffice-hangs.patch
+	"
+if use xineramainfo; then
+	PATCHES="${PATCHES}
+		${FILESDIR}/${PV}-xineramainfo.patch
+		"
+fi
+PATCHES="${PATCHES}
 	${FILESDIR}/${PV}-fix-randr-resizing.patch
 	${FILESDIR}/${PV}-fix-xephyr-amd64-segfault.patch
 	${FILESDIR}/${PV}-ramdac.patch
