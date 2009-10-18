@@ -107,6 +107,7 @@ IUSE="${IUSE_VIDEO_CARDS}
 	3dfx
 	dri ipv6 minimal nptl sdl xprint"
 RDEPEND=">=x11-libs/libXfont-1.2.5
+ !>=x11-libs/libXfont-1.4.0 
 	x11-libs/xtrans
 	x11-libs/libXau
 	x11-libs/libXext
