@@ -10,7 +10,7 @@ SRC_URI="http://www.ibiblio.org/pub/Linux/libs/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="x86 ppc sparc amd64"
+KEYWORDS="~x86 ~ppc ~sparc ~amd64"
 IUSE=""
 
 DEPEND=""
