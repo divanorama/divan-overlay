@@ -16,7 +16,7 @@ RDEPEND="cups? ( net-print/foomatic-filters )
 	virtual/ghostscript"
 
 src_compile() {
-	cd capt 
+	cd capt
 	emake || die
 }
 
