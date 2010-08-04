@@ -2,8 +2,8 @@
 <layman>
 <overlays>
 <overlay
-type = "svn"
-src  = "http://divan-overlay.googlecode.com/svn/trunk/"
+type = "git"
+src  = "git://github.com/divanorama/divan-overlay.git"
 contact = "divanorama@gmail.com"
 name = "divan-overlay">
 
