@@ -1,19 +1,12 @@
-<?xml version="1.0" ?>
-<layman>
-<overlays>
-<overlay
-type = "git"
-src  = "git://github.com/divanorama/divan-overlay.git"
-contact = "divanorama@gmail.com"
-name = "divan-overlay">
-
-<link>
-http://code.google.com/p/divan-overlay/
-</link>
-
-<description>
-Contains some of my ebuilds.
-</description>
-</overlay>
-</overlays>
-</layman>
+<?xml version="1.0" encoding="UTF-8"?>
+<repositories version="1.0">
+  <repo priority="50" quality="experimental" status="unofficial">
+    <name>divan-overlay</name>
+    <description>Contains some of my ebuilds.</description>
+    <homepage>http://code.google.com/p/divan-overlay/</homepage>
+    <owner>
+      <email>divanorama@gmail.com</email>
+    </owner>
+    <source type="git">git://github.com/divanorama/divan-overlay.git</source>
+  </repo>
+</repositories>
