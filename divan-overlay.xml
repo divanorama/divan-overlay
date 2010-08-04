@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<layman>
+<overlays>
+<overlay
+type = "svn"
+src  = "http://divan-overlay.googlecode.com/svn/trunk/"
+contact = "divanorama@gmail.com"
+name = "divan-overlay">
+
+<link>
+http://code.google.com/p/divan-overlay/
+</link>
+
+<description>
+Contains some of my ebuilds.
+</description>
+</overlay>
+</overlays>
+</layman>
