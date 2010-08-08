@@ -8,7 +8,7 @@ SRC_URI="http://kodiak.cs.cornell.edu/svm_light/v6.02/svm_light.tar.gz"
 
 LICENSE=""
 SLOT="0"
-KEYWORDS="~x86"
+KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 DEPEND=""
