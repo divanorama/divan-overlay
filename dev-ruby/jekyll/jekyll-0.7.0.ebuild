@@ -12,6 +12,11 @@ inherit ruby-fakegem eutils
 DESCRIPTION="Blog-aware, static site generator in Ruby."
 HOMEPAGE="http://github.com/mojombo/jekyll"
 
+RDEPEND="${RDEPEND}
+        dev-ruby/redcloth
+        dev-ruby/ruby-liquid
+        dev-ruby/maruku"
+
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
