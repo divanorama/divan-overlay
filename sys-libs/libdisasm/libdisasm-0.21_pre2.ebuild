@@ -11,7 +11,7 @@ SRC_URI="mirror://sourceforge/bastard/${PN}_${MY_PV}.tgz"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~x86"
 IUSE="doc"
 
 src_compile() {

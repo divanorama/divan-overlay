@@ -11,7 +11,7 @@ SRC_URI="mirror://sourceforge/lida/${P}.tgz"
 
 LICENSE="GPL"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~x86"
 IUSE=""
 
 RDEPEND="dev-perl/perl-tk
