@@ -12,7 +12,7 @@ DEPEND=">=sys-devel/crossdev-0.9.1"
 RDEPEND=""
 
 src_unpack() {
-	unpack ${DISTDIR}/${A} || die
+	unpack "${A}" || die
 	cd qi.git || die
 	epatch ${FILESDIR}/config_mk.patch
 	epatch ${FILESDIR}/version.patch
