@@ -14,7 +14,7 @@ RDEPEND=""
 
 src_unpack() {
 	unpack "${A}" || die
-	cd qi.git || die
+	cd qi || die
 	epatch ${FILESDIR}/config_mk.patch
 	epatch ${FILESDIR}/version.patch
 }
@@ -22,7 +22,7 @@ src_unpack() {
 src_compile() {
 	type -p armv4tl-softfloat-linux-gnueabi-gcc > /dev/null || die \
 		"run crossdev -t armv4tl-softfloat-linux-gnueabi";
-	cd qi.git || die
+	cd qi || die
 	emake CPU=s3c2442 || die
 }
 
