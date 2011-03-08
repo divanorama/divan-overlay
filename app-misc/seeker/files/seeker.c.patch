@@ -1,0 +1,11 @@
+--- seeker.c.orig	2011-03-08 22:44:23.000000000 +0500
++++ seeker.c	2011-03-08 22:44:31.000000000 +0500
+@@ -16,7 +16,7 @@
+ int count;
+ time_t start;
+ 
+-void done()
++void done(int)
+ {
+ 	time_t end;
+ 
