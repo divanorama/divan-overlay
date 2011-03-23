@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+DIR=$(dirname $0)
+BIN=$(basename $0)
+SEDDIR=$(echo $DIR | sed -e "s@/@\\\\/@g")
+NPATH=$(echo $PATH | sed -e "s/$SEDDIR://" -e "s/:$SEDDIR//")
+VERB=$(PATH=$NPATH $BIN -v 2>&1)
+CONF=$(echo "${VERB}" | grep "^Configured with: ")
+HOST=$(echo $CONF | grep -o " --host=[^ ]*" | cut -c 9-)
+VER=$(echo "$VERB" | grep -o "^gcc version [0-9\\.]* " | grep -o "[0-9\\.]*")
+TBIN=$(echo "$BIN" | sed -e "s/^$HOST-//" -e "s/-$VER$//" -e "s/^cc$/gcc/")
+NBIN="$HOST-$TBIN-$VER"
+$NBIN $@

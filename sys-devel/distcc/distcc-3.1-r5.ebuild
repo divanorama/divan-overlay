@@ -106,10 +106,8 @@ src_install() {
 	# create the masquerade directory
 	dodir "${DCCC_PATH}"
 	for f in cc c++ gcc g++; do
-		dosym /usr/bin/distcc "${DCCC_PATH}/${f}"
-		if [ "${f}" != "cc" ]; then
-			dosym /usr/bin/distcc "${DCCC_PATH}/${CTARGET:-${CHOST}}-${f}"
-		fi
+		dosym "${DCCC_PATH}/wrapper" "${DCCC_PATH}/${f}"
+		dosym "${DCCC_PATH}/wrapper" "${DCCC_PATH}/${CTARGET:-${CHOST}}-${f}"
 	done
 
 	# create the distccd pid directory
@@ -134,6 +132,9 @@ src_install() {
 
 	python_convert_shebangs -r $(python_get_version) "${ED}"
 	sed -e "s:${EPREFIX}/usr/bin/python:$(PYTHON -a):" -i "${ED}usr/bin/pump" || die "sed failed"
+
+	exeinto "${DCCC_PATH}"
+	doexe "${FILESDIR}/wrapper"
 }
 
 pkg_postinst() {
