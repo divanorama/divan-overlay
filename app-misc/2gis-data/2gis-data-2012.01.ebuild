@@ -12,7 +12,7 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 
 DEPEND="app-arch/unzip"
-RDEPEND=">=app-misc/2gis-3.0.7.1"
+RDEPEND=">=app-misc/2gis-3.5.5.1"
 
 # filled in in `my_add_town`
 IUSE=""
