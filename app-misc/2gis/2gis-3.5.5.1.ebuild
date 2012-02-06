@@ -19,10 +19,6 @@ DEPEND="app-arch/unzip"
 RDEPEND="app-emulation/wine
 	data? ( app-misc/2gis-data )"
 
-pkg_setup() {
-	check_license "${FILESDIR%/files}"/../../licenses/${LICENSE}
-}
-
 src_install() {
 	insinto /opt/${PN}
 	doins -r 2gis/3.0/* || die
