@@ -164,8 +164,9 @@ setup_flags() {
 
 	# Lock glibc at -O2 -- linuxthreads needs it and we want to be
 	# conservative here.  -fno-strict-aliasing is to work around #155906
+	# -fno-builtin-strlen is to work around #390323
 	filter-flags -O?
-	append-flags -O2 -fno-strict-aliasing
+	append-flags -O2 -fno-strict-aliasing -fno-builtin-strlen
 
 	# Cant build glibc itself with fortify code
 	append-cppflags -U_FORTIFY_SOURCE
