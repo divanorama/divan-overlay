@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-inherit eutils toolchain-funcs
-
 EAPI=3
+
+inherit eutils toolchain-funcs
 
 DESCRIPTION="Read small pieces of data from a raw disk device, in a random
 access pattern."
