@@ -25,9 +25,9 @@ EGIT_REPO_URI="git://git.kernel.org/pub/scm/linux/kernel/git/rostedt/trace-cmd.g
 EGIT_BRANCH="master"
 
 src_compile() {
-	local target=all
+	local target="all doc"
 	if use gui; then
-		target="all gui"
+		target="all gui doc"
 	fi
 	emake CC="$(tc-getCC)" CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" \
 	 MANPAGE_DOCBOOK_XSL="/usr/share/sgml/docbook/xsl-stylesheets/manpages/docbook.xsl" $target
@@ -36,7 +36,7 @@ src_compile() {
 src_install() {
 	local target=install
 	if use gui; then
-		target="install install_gui"
+		target="install install_gui install_doc"
 	fi
 	emake CC="$(tc-getCC)" CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" \
 	 DESTDIR="${D}" prefix="/usr" $target
