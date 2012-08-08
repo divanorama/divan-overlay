@@ -16,6 +16,7 @@ IUSE="+gui +python"
 
 DEPEND="
  app-text/docbook-xsl-stylesheets
+ app-text/asciidoc
  gui? ( dev-lang/python )
  python? ( dev-lang/python dev-lang/swig )
 "
