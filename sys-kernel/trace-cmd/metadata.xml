@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <herd>no-herd</herd>
+  <maintainer>
+    <email>cJ-gentoo@zougloub.eu</email>
+  </maintainer>
+  <use>
+    <flag name='gui'>Build kernelshark, trace-graph and trace-view GUIs</flag>
+    <flag name='python'>FIXME do nothing</flag>
+  </use>
+</pkgmetadata>
