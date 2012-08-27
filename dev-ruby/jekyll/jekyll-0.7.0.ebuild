@@ -14,7 +14,7 @@ HOMEPAGE="http://github.com/mojombo/jekyll"
 
 RDEPEND="${RDEPEND}
         dev-ruby/redcloth
-        dev-ruby/ruby-liquid
+        dev-ruby/liquid
         dev-ruby/maruku"
 
 LICENSE="MIT"
