@@ -6,21 +6,21 @@ EAPI=3
 
 inherit elisp-common versionator
 
-XTOM_VERSION=1r1p4
-
 PV1=$(get_version_component_range 1-2 )
 PV2=$(get_version_component_range 3 )
+PV3=$(get_version_component_range 4-6 )
+PV4=$(get_version_component_range 7-8 )
 PV1=$(replace_version_separator 1 'r' ${PV1} )
-PV2=${PV1}p${PV2}
+PV3=$(replace_all_version_separators '_' ${PV3} )
+PV4=$(replace_all_version_separators '_' ${PV4} )
+PVX=${PV1}p${PV2}_${PV3}-${PV4}
 
 DESCRIPTION="System for computational discrete algebra"
 HOMEPAGE="http://www.gap-system.org/"
-SRC_URI="
-	ftp://ftp.gap-system.org/pub/gap/gap4/tar.bz2/${PN}${PV2}.tar.bz2
-	xtom? ( ftp://ftp.gap-system.org/pub/gap/gap4/tar.bz2/xtom${XTOM_VERSION}.tar.bz2 )"
+SRC_URI="ftp://ftp.gap-system.org/pub/gap/gap4/tar.bz2/${PN}${PVX}.tar.bz2"
 
 SLOT="0"
-IUSE="emacs vim-syntax xtom"
+IUSE="emacs vim-syntax"
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
 
@@ -31,8 +31,16 @@ DEPEND="${RDEPEND}"
 
 S="${WORKDIR}"/${PN}${PV1}
 
+src_configure() {
+	GAP_ABI="32";
+	if [[ ${ABI} == "amd64" ]]; then
+		GAP_ABI="64"
+	fi;
+	econf ABI=${GAP_ABI}
+}
+
 src_compile() {
-	emake CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" compile || die "emake failed"
+	emake -j1 CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" ABI=${GAP_ABI} compile manuals || die "emake failed"
 }
 
 src_test() {
@@ -40,14 +48,17 @@ src_test() {
 }
 
 src_install() {
-	dodoc README description*
+	cp doc/changes/manual.pdf changes.pdf
+	cp doc/ref/manual.pdf reference.pdf
+	cp doc/tut/manual.pdf manual.pdf
+	dodoc changes.pdf reference.pdf manual.pdf
 	insinto /usr/share/${PN}
-	doins -r doc grp lib pkg prim small trans tst sysinfo.gap
+	doins -r grp lib pkg prim small trans tst sysinfo.gap
 	source sysinfo.gap
 	exeinto /usr/libexec/${PN}
 	doexe bin/${GAParch}/gap
 	sed -e "s|@gapdir@|/usr/share/${PN}|" \
-		-e "s|@target@-@CC@|/usr/libexec/${PN}|" \
+		-e "s|@GAPARCH@|/usr/libexec/${PN}|" \
 		-e "s|@EXEEXT@||" \
 		-e 's|$GAP_DIR/bin/||' \
 		gap.shi > gap
