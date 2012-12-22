@@ -1,0 +1,67 @@
+diff --git a/offlineimap/folder/IMAP.py b/offlineimap/folder/IMAP.py
+index 3c702f4..54e633c 100644
+--- a/offlineimap/folder/IMAP.py
++++ b/offlineimap/folder/IMAP.py
+@@ -401,6 +401,9 @@ class IMAPFolder(BaseFolder):
+         return internaldate
+ 
+     def savemessage(self, uid, content, flags, rtime):
++        if self.repository.getreadonly():
++            raise RuntimeError, "Tried to push message to readonly repository"
++
+         """Save the message on the Server
+ 
+         This backend always assigns a new uid, so the uid arg is ignored.
+@@ -497,6 +500,9 @@ class IMAPFolder(BaseFolder):
+ 
+ 
+     def savemessageflags(self, uid, flags):
++        if self.repository.getreadonly():
++            return
++
+         imapobj = self.imapserver.acquireconnection()
+         try:
+             try:
+@@ -535,6 +541,9 @@ class IMAPFolder(BaseFolder):
+         self.processmessagesflags('-', uidlist, flags)
+ 
+     def processmessagesflags(self, operation, uidlist, flags):
++        if self.repository.getreadonly():
++            return
++
+         if len(uidlist) > 101:
+             # Hack for those IMAP ervers with a limited line length
+             self.processmessagesflags(operation, uidlist[:100], flags)
+@@ -594,6 +603,9 @@ class IMAPFolder(BaseFolder):
+         self.deletemessages_noconvert(uidlist)
+ 
+     def deletemessages_noconvert(self, uidlist):
++        if self.repository.getreadonly():
++            raise RuntimeError, "Tried to delete messages from readonly folder"
++
+         # Weed out ones not in self.messagelist
+         uidlist = [uid for uid in uidlist if self.uidexists(uid)]
+         if not len(uidlist):
+diff --git a/offlineimap/repository/IMAP.py b/offlineimap/repository/IMAP.py
+index 82d9e32..31e4d45 100644
+--- a/offlineimap/repository/IMAP.py
++++ b/offlineimap/repository/IMAP.py
+@@ -79,6 +79,9 @@ class IMAPRepository(BaseRepository):
+     def dropconnections(self):
+         self.imapserver.close()
+ 
++    def getreadonly(self):
++        return self.getconfboolean("readonly", 0)
++
+     def getholdconnectionopen(self):
+         if self.getidlefolders():
+             return 1
+@@ -321,6 +324,8 @@ class IMAPRepository(BaseRepository):
+         return retval
+ 
+     def makefolder(self, foldername):
++        if self.getreadonly():
++            raise RuntimeError, "Readonly repository %s tried to create folder %s" % (self.getname(), foldername)
+         #if self.getreference() != '""':
+         #    newname = self.getreference() + self.getsep() + foldername
+         #else:

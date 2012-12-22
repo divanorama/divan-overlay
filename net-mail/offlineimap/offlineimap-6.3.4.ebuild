@@ -18,7 +18,7 @@ SRC_URI="https://github.com/nicolas33/offlineimap/tarball/v${MY_PV} -> ${P}.tar.
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
-IUSE="doc ssl"
+IUSE="doc ssl rosync"
 
 DEPEND="doc? ( dev-python/docutils )"
 RDEPEND=""
@@ -32,6 +32,9 @@ src_prepare() {
 	distutils_src_prepare
 	epatch "${FILESDIR}"/offlineimap-6.3.2-darwin10.patch
 	epatch "${FILESDIR}/${PF}"-fix-manpage-headings.patch
+	if use rosync ; then
+		epatch "${FILESDIR}"/${P}-rosync.patch
+	fi
 }
 
 src_compile() {
