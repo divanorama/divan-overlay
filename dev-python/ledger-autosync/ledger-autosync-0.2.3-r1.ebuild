@@ -23,6 +23,7 @@ dev-python/mock
 RDEPEND="${DEPEND}
 dev-python/ofxparse
 dev-python/ofxclient
+dev-python/ofxhome
 "
 
 src_prepare() {
