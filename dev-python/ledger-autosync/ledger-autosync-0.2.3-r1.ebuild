@@ -24,6 +24,7 @@ RDEPEND="${DEPEND}
 dev-python/ofxparse
 dev-python/ofxclient
 dev-python/ofxhome
+dev-python/keyring
 "
 
 src_prepare() {
