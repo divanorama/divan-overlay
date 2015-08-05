@@ -25,6 +25,7 @@ dev-python/ofxparse
 dev-python/ofxclient
 dev-python/ofxhome
 dev-python/keyring
+>=app-office/ledger-3
 "
 
 src_prepare() {
