@@ -20,7 +20,9 @@ DEPEND="
 >=dev-python/nose-1.0
 dev-python/mock
 "
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+dev-python/ofxparse
+"
 
 src_prepare() {
 #	rm -f "${S}"/setup.cfg # This confuses setuptools in Gentoo
