@@ -15,3 +15,18 @@ KEYWORDS="~amd64"
 SLOT="0"
 IUSE=""
 
+DEPEND=">=dev-lang/python-2.7"
+
+RDEPEND="
+${DEPEND}
+dev-python/keyring
+dev-python/ofxhome
+>dev-python/ofxparse-0.8
+>=dev-python/beautifulsoup-3.0
+"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch ${FILESDIR}/${P}-*.patch
+}
