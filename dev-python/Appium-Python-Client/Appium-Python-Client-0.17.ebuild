@@ -1,3 +1,5 @@
+EAPI="5"
+
 inherit distutils
 
 MY_PN="Appium-Python-Client"
@@ -10,3 +12,8 @@ LICENSE="Apache-2.0"
 KEYWORDS="~x86 ~amd64"
 SLOT="0"
 IUSE=""
+
+RDEPEND="
+|| ( dev-python/enum34 dev-python/python:3.4 )
+dev-python/selenium
+"
